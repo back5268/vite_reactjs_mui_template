@@ -1,21 +1,20 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { ButtonBase } from '@mui/material';
 
 // project imports
 import Logo from '@components/Logo';
-import { MENU_OPEN } from '@store/actions';
 import config from '@config';
+import { useConfigState } from '@store/configState';
 
 // ==============================|| MAIN LOGO ||============================== //
 
 const LogoSection = () => {
-  const defaultId = useSelector((state) => state.customization.defaultId);
-  const dispatch = useDispatch();
+  const { defaultId, setIsOpen } = useConfigState()
+
   return (
-    <ButtonBase disableRipple onClick={() => dispatch({ type: MENU_OPEN, id: defaultId })} component={Link} to={config.defaultPath}>
+    <ButtonBase disableRipple onClick={() => setIsOpen(defaultId)} component={Link} to={config.defaultPath}>
       <Logo />
     </ButtonBase>
   );

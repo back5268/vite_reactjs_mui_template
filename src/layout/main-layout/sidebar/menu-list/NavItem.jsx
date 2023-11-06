@@ -1,25 +1,21 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery } from '@mui/material';
 
-// project imports
-import { MENU_OPEN, SET_MENU } from '@store/actions';
-
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { useConfigState } from '@store/configState';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const customization = useSelector((state) => state.customization);
+  const { isOpen, setIsOpen, borderRadius } = useConfigState()
   const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
   const Icon = item.icon;
@@ -28,8 +24,8 @@ const NavItem = ({ item, level }) => {
   ) : (
     <FiberManualRecordIcon
       sx={{
-        width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
-        height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
+        width: isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
+        height: isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
       }}
       fontSize={level > 0 ? 'inherit' : 'medium'}
     />
@@ -48,8 +44,8 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    dispatch({ type: MENU_OPEN, id });
-    if (matchesSM) dispatch({ type: SET_MENU, opened: false });
+    setIsOpen(id)
+    if (matchesSM) setOpened(false)
   };
 
   // active menu item on page load
@@ -59,9 +55,8 @@ const NavItem = ({ item, level }) => {
       .split('/')
       .findIndex((id) => id === item.id);
     if (currentIndex > -1) {
-      dispatch({ type: MENU_OPEN, id: item.id });
+      setIsOpen(item.id)
     }
-    // eslint-disable-next-line
   }, [pathname]);
 
   return (
@@ -69,20 +64,20 @@ const NavItem = ({ item, level }) => {
       {...listItemProps}
       disabled={item.disabled}
       sx={{
-        borderRadius: `${customization.borderRadius}px`,
+        borderRadius: `${borderRadius}px`,
         mb: 0.5,
         alignItems: 'flex-start',
         backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
         py: level > 1 ? 1 : 1.25,
         pl: `${level * 24}px`
       }}
-      selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
+      selected={isOpen.findIndex((id) => id === item.id) > -1}
       onClick={() => itemHandler(item.id)}
     >
       <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
       <ListItemText
         primary={
-          <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
+          <Typography variant={isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
             {item.title}
           </Typography>
         }

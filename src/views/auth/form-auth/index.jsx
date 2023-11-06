@@ -1,30 +1,28 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Box, Button, Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
+// assets
+import Google from '@assets/images/icons/social-google.svg';
+
 // project imports
 import AuthWrapper from './AuthWrapper';
 import AuthCardWrapper from './AuthCardWrapper';
 import Logo from '@components/Logo';
+import { useConfigState } from '@store/configState';
 import AnimateButton from '@components/extended/AnimateButton';
 import AuthFooter from '@components/cards/AuthFooter';
-
-// assets
-import Google from '@assets/images/icons/social-google.svg';
-
-// ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const FormAuth = (props) => {
   const { headerTitle, footerTitle, footerLink } = props;
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const customization = useSelector((state) => state.customization);
+  const { borderRadius } = useConfigState();
 
   const googleHandler = async () => {
-    console.error('Register');
+    
   };
 
   return (
@@ -96,7 +94,7 @@ const FormAuth = (props) => {
                               borderColor: `${theme.palette.grey[100]} !important`,
                               color: `${theme.palette.grey[900]}!important`,
                               fontWeight: 500,
-                              borderRadius: `${customization.borderRadius}px`
+                              borderRadius: `${borderRadius}px`
                             }}
                             disableRipple
                             disabled

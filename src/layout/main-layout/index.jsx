@@ -1,6 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
-
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
@@ -8,14 +5,14 @@ import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material'
 // assets
 import { IconChevronRight } from '@tabler/icons';
 import Breadcrumbs from '@components/extended/Breadcrumbs';
-import { drawerWidth } from '@/store/constant';
+import { drawerWidth } from '@constant/main';
 
 // project imports
 import Sidebar from './Sidebar';
 import TopBar from './topbar';
 import navigation from '../items';
-import { SET_MENU } from '@store/actions';
 import Customization from '@layout/Customization';
+import { useConfigState } from '@store/configState';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -53,15 +50,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = () => {
+const MainLayout = (props) => {
+  const { opened, setOpened } = useConfigState()
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
-  // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
-  const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-  };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -74,22 +66,22 @@ const MainLayout = () => {
         elevation={0}
         sx={{
           bgcolor: theme.palette.background.default,
-          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+          transition: opened ? theme.transitions.create('width') : 'none'
         }}
       >
         <Toolbar>
-          <TopBar handleLeftDrawerToggle={handleLeftDrawerToggle} />
+          <TopBar handleLeftDrawerToggle={() => setOpened(!opened)} />
         </Toolbar>
       </AppBar>
 
       {/* drawer */}
-      <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+      <Sidebar drawerOpen={!matchDownMd ? opened : !opened} drawerToggle={() => setOpened(!opened)} />
 
       {/* main content */}
-      <Main theme={theme} open={leftDrawerOpened}>
+      <Main theme={theme} open={opened}>
         {/* breadcrumb */}
         <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-        <Outlet />
+        {props.children}
       </Main>
       <Customization />
     </Box>

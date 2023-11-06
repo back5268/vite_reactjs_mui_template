@@ -8,7 +8,7 @@ import { Box, Card, Divider, Grid, Typography } from '@mui/material';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project imports
-import { gridSpacing } from '@store/constant';
+import { gridSpacing } from '@constant/main';
 import config from '@config';
 
 // assets

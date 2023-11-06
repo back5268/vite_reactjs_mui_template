@@ -11,7 +11,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 // project imports
 import MenuCard from './menu-card';
 import MenuList from './menu-list';
-import { drawerWidth } from '@store/constant';
+import { drawerWidth } from '@constant/main';
 import LogoSection from '../logo';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //

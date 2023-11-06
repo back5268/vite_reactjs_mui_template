@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -24,8 +23,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import SubCard from '@components/cards/SubCard';
 import AnimateButton from '@components/extended/AnimateButton';
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '@store/actions';
-import { gridSpacing } from '@store/constant';
+import { gridSpacing } from '@constant/main';
+import { useConfigState } from '@store/configState';
 
 // concat 'px'
 function valueText(value) {
@@ -36,8 +35,7 @@ function valueText(value) {
 
 const Customization = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const customization = useSelector((state) => state.customization);
+  const { borderRadius, setBorderRadius, fontFamily, setFontFamily } = useConfigState()
 
   // drawer on/off
   const [open, setOpen] = useState(false);
@@ -46,17 +44,17 @@ const Customization = () => {
   };
 
   // state - border radius
-  const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
+  const [borderRadiusz, setBorderRadiusz] = useState(borderRadius);
   const handleBorderRadius = (event, newValue) => {
-    setBorderRadius(newValue);
+    setBorderRadiusz(newValue);
   };
 
   useEffect(() => {
-    dispatch({ type: SET_BORDER_RADIUS, borderRadius });
-  }, [dispatch, borderRadius]);
+    setBorderRadius(borderRadiusz)
+  }, [borderRadiusz]);
 
   let initialFont;
-  switch (customization.fontFamily) {
+  switch (fontFamily) {
     case `'Inter', sans-serif`:
       initialFont = 'Inter';
       break;
@@ -70,10 +68,10 @@ const Customization = () => {
   }
 
   // state - font family
-  const [fontFamily, setFontFamily] = useState(initialFont);
+  const [fontFamilyz, setFontFamilyz] = useState(initialFont);
   useEffect(() => {
     let newFont;
-    switch (fontFamily) {
+    switch (fontFamilyz) {
       case 'Inter':
         newFont = `'Inter', sans-serif`;
         break;
@@ -85,8 +83,8 @@ const Customization = () => {
         newFont = `'Roboto', sans-serif`;
         break;
     }
-    dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
-  }, [dispatch, fontFamily]);
+    setFontFamily(newFont);
+  }, [fontFamilyz]);
 
   return (
     <>
@@ -136,8 +134,8 @@ const Customization = () => {
                 <FormControl>
                   <RadioGroup
                     aria-label="font-family"
-                    value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
+                    value={fontFamilyz}
+                    onChange={(e) => setFontFamilyz(e.target.value)}
                     name="row-radio-buttons-group"
                   >
                     <FormControlLabel
