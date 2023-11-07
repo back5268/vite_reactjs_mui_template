@@ -11,8 +11,8 @@ import { drawerWidth } from '@constant/main';
 import Sidebar from './Sidebar';
 import TopBar from './topbar';
 import navigation from '../items';
-import Customization from '@layout/Customization';
-import { useConfigState } from '@store/configState';
+import { useConfigState } from '@store';
+import Customization from '../Customization';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -51,7 +51,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = (props) => {
-  const { opened, setOpened } = useConfigState()
+  const { opened, setOpened } = useConfigState();
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 

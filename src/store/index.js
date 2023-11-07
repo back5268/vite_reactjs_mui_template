@@ -1,3 +1,3 @@
 export * from './configState';
 export * from './userState';
-export * from '../constant/main';
+export * from './loadDataState';

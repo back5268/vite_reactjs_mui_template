@@ -21,10 +21,9 @@ import { IconSettings } from '@tabler/icons';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import SubCard from '@components/cards/SubCard';
-import AnimateButton from '@components/extended/AnimateButton';
-import { gridSpacing } from '@constant/main';
-import { useConfigState } from '@store/configState';
+import { AnimateButton, SubCard } from '@components';
+import { gridSpacing } from '@constant';
+import { useConfigState } from '@store';
 
 // concat 'px'
 function valueText(value) {
@@ -35,7 +34,7 @@ function valueText(value) {
 
 const Customization = () => {
   const theme = useTheme();
-  const { borderRadius, setBorderRadius, fontFamily, setFontFamily } = useConfigState()
+  const { borderRadius, setBorderRadius, fontFamily, setFontFamily } = useConfigState();
 
   // drawer on/off
   const [open, setOpen] = useState(false);
@@ -50,7 +49,7 @@ const Customization = () => {
   };
 
   useEffect(() => {
-    setBorderRadius(borderRadiusz)
+    setBorderRadius(borderRadiusz);
   }, [borderRadiusz]);
 
   let initialFont;

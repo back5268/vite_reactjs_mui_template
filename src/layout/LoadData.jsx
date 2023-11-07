@@ -1,41 +1,36 @@
 import { Backdrop, CircularProgress } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { useUserState } from '@store/userState';
-import { useQuery } from 'react-query';
-import { getData } from '@lib/request';
+import { getAuthApi } from '@api';
+import { useLoadDataState, useUserState } from '@store';
 
 const LoadData = () => {
   const theme = useTheme();
-  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem('token');
-  const { data } = useQuery('users', async () => await getData('/users'));
+  const clientId = localStorage.getItem('clientId');
   const { setUserInfo } = useUserState();
+  const { setLoadData } = useLoadDataState();
 
-  const fetchData = async () => {
-    if (data && data[0]) {
-      const user = data.find((d) => d.username === token);
-      if (user) {
-        setUserInfo({ userInfo: user, token: user.username });
-      } else {
-        localStorage.removeItem('token');
-      }
+  async function fetchData() {
+    const getAuth = await getAuthApi();
+    if (getAuth.data && getAuth.data.status) {
+      const userInfo = getAuth.data.data;
+      setUserInfo({ userInfo });
     }
-    setLoading(false);
-  };
+    setLoadData(false);
+  }
 
   useEffect(() => {
-    if (!token) {
-      setLoading(false);
+    if (!token || !clientId) {
+      setLoadData(false);
     } else fetchData();
   }, []);
 
-  if (loading)
-    return (
-      <Backdrop open={true} style={{ zIndex: 2000 }}>
-        <CircularProgress size={50} thickness={5} style={{ color: theme.palette.secondary.main }} />
-      </Backdrop>
-    );
+  return (
+    <Backdrop open={true} style={{ zIndex: 2000 }}>
+      <CircularProgress size={50} thickness={5} style={{ color: theme.palette.secondary.main }} />
+    </Backdrop>
+  );
 };
 
 export default LoadData;

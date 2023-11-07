@@ -9,8 +9,7 @@ import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import Chart from 'react-apexcharts';
 
 // project imports
-import MainCard from '../../components/cards/MainCard';
-import SkeletonTotalOrderCard from '../../components/cards/skeneton/EarningCard';
+import { EarningCard, MainCard } from '@components';
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
@@ -74,7 +73,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <SkeletonTotalOrderCard />
+        <EarningCard />
       ) : (
         <CardWrapper border={false} content={false}>
           <Box sx={{ p: 2.25 }}>

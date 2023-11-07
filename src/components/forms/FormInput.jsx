@@ -8,16 +8,10 @@ const FormInput = (props) => {
   return (
     <FormControl fullWidth error={Boolean(errors && errors[id])} sx={{ ...theme.typography.customInput }}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
-      <OutlinedInput
-        {...register(id, required && getValidateOptions(required))}
-        id={id}
-        label={label}
-        autoComplete={id}
-        {...prop}
-      />
+      <OutlinedInput {...register(id, required && getValidateOptions(required))} id={id} label={label} autoComplete={id} {...prop} />
       {errors && errors[id] && <FormHelperText error>{errors[id].message}</FormHelperText>}
     </FormControl>
   );
-}
+};
 
-export default FormInput
+export default FormInput;

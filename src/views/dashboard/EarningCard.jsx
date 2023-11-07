@@ -6,11 +6,10 @@ import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
-import MainCard from '../../components/cards/MainCard';
-import SkeletonEarningCard from '../../components/cards/skeneton/EarningCard';
+import { EarningCard, MainCard } from '@components';
 
 // assets
-import EarningIcon from '../../assets/images/icons/earning.svg';
+import EarningIcon from '@assets/images/icons/earning.svg';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
@@ -56,7 +55,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const EarningCard = ({ isLoading }) => {
+const EarningCardz = ({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -72,7 +71,7 @@ const EarningCard = ({ isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <SkeletonEarningCard />
+        <EarningCard />
       ) : (
         <CardWrapper border={false} content={false}>
           <Box sx={{ p: 2.25 }}>
@@ -178,8 +177,8 @@ const EarningCard = ({ isLoading }) => {
   );
 };
 
-EarningCard.propTypes = {
+EarningCardz.propTypes = {
   isLoading: PropTypes.bool
 };
 
-export default EarningCard;
+export default EarningCardz;

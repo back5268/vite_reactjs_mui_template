@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { Box, Card, Grid } from '@mui/material';
 
 // project imports
-import SubCard from '../../components/cards/SubCard';
-import MainCard from '../../components/cards/MainCard';
-import SecondaryAction from '../../components/cards/CardSecondaryAction';
-import { gridSpacing } from '../../constant/main';
+import { CardSecondaryAction, MainCard, SubCard } from '@components';
+import { gridSpacing } from '@constant';
 
 // ===============================|| SHADOW BOX ||=============================== //
 
@@ -35,7 +33,7 @@ ShadowBox.propTypes = {
 // ============================|| UTILITIES SHADOW ||============================ //
 
 const UtilitiesShadow = () => (
-  <MainCard title="Basic Shadow" secondary={<SecondaryAction link="https://next.material-ui.com/system/shadows/" />}>
+  <MainCard title="Basic Shadow" secondary={<CardSecondaryAction link="https://next.material-ui.com/system/shadows/" />}>
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
         <SubCard title="Basic Shadow">

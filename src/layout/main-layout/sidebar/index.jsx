@@ -12,7 +12,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import MenuCard from './menu-card';
 import MenuList from './menu-list';
 import { drawerWidth } from '@constant/main';
-import LogoSection from '../logo';
+import LogoSection from '../logo-section';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 

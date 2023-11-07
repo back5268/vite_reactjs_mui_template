@@ -1,0 +1,1 @@
+const handleCallApi = (handleSuccess, HandleFail) => {};

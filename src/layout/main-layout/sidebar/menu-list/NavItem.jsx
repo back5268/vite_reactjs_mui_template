@@ -8,14 +8,14 @@ import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography, u
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { useConfigState } from '@store/configState';
+import { useConfigState } from '@store';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();
   const { pathname } = useLocation();
-  const { isOpen, setIsOpen, borderRadius } = useConfigState()
+  const { isOpen, setIsOpen, borderRadius, setOpened } = useConfigState();
   const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
   const Icon = item.icon;
@@ -44,8 +44,8 @@ const NavItem = ({ item, level }) => {
   }
 
   const itemHandler = (id) => {
-    setIsOpen(id)
-    if (matchesSM) setOpened(false)
+    setIsOpen(id);
+    if (matchesSM) setOpened(false);
   };
 
   // active menu item on page load
@@ -55,7 +55,7 @@ const NavItem = ({ item, level }) => {
       .split('/')
       .findIndex((id) => id === item.id);
     if (currentIndex > -1) {
-      setIsOpen(item.id)
+      setIsOpen(item.id);
     }
   }, [pathname]);
 

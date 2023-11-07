@@ -2,10 +2,8 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 // project imports
 import routes from './routes';
-import MainLayout from '@layout/main-layout';
-import Customization from '@layout/Customization';
-import { getUserState } from '@store/userState';
-import LoadData from '@layout/LoadData';
+import { useLoadDataState, useUserState } from '@store';
+import { Customization, LoadData, MainLayout } from '@layout';
 
 const MinimalLayout = (props) => (
   <>
@@ -15,40 +13,43 @@ const MinimalLayout = (props) => (
 );
 
 const PrivateRoutes = () => {
-  const userInfo = getUserState().userInfo;
-  console.log(userInfo);
+  const { userInfo } = useUserState();
   return userInfo ? <Outlet /> : <Navigate to="/auth/login" />;
 };
 
 const PublicRoutes = () => {
-  const userInfo = getUserState().userInfo;
-  console.log(userInfo);
+  const { userInfo } = useUserState();
   return !userInfo ? <Outlet /> : <Navigate to="/" />;
 };
 
 const Router = () => {
+  const { loadData } = useLoadDataState();
+
   return (
     <>
-      <LoadData />
-      <Routes>
-        {routes.map((route, index) => {
-          const DefaultLayout = route.layout ? MainLayout : MinimalLayout;
-          const Page = route.element;
-          return (
-            <Route key={index} element={route.public ? <PublicRoutes /> : <PrivateRoutes />}>
-              <Route
-                path={route.path}
-                element={
-                  <DefaultLayout>
-                    <Page />
-                  </DefaultLayout>
-                }
-              />
-            </Route>
-          );
-        })}
-        {/* <Route path="*" element={<errorPage.element />} /> */}
-      </Routes>
+      {loadData ? (
+        <LoadData />
+      ) : (
+        <Routes>
+          {routes.map((route, index) => {
+            const DefaultLayout = route.layout ? MainLayout : MinimalLayout;
+            const Page = route.element;
+            return (
+              <Route key={index} element={route.public ? <PublicRoutes /> : <PrivateRoutes />}>
+                <Route
+                  path={route.path}
+                  element={
+                    <DefaultLayout>
+                      <Page />
+                    </DefaultLayout>
+                  }
+                />
+              </Route>
+            );
+          })}
+          {/* <Route path="*" element={<errorPage.element />} /> */}
+        </Routes>
+      )}
     </>
   );
 };

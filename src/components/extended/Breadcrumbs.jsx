@@ -8,8 +8,8 @@ import { Box, Card, Divider, Grid, Typography } from '@mui/material';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project imports
-import { gridSpacing } from '@constant/main';
-import config from '@config';
+import { gridSpacing } from '@constant';
+import { config } from '@config';
 
 // assets
 import { IconTallymark1 } from '@tabler/icons';

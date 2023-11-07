@@ -10,9 +10,8 @@ import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from '@components/cards/skeneton/TotalGrowthBarChart';
-import MainCard from '@components/cards/MainCard';
-import { gridSpacing } from '@constant/main';
+import { MainCard, TotalGrowthBarChart } from '@components';
+import { gridSpacing } from '@constant';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
@@ -34,7 +33,7 @@ const status = [
 
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
-const TotalGrowthBarChart = ({ isLoading }) => {
+const TotalGrowthBarChartz = ({ isLoading }) => {
   const [value, setValue] = useState('today');
   const theme = useTheme();
 
@@ -88,7 +87,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <SkeletonTotalGrowthBarChart />
+        <TotalGrowthBarChart />
       ) : (
         <MainCard>
           <Grid container spacing={gridSpacing}>
@@ -125,8 +124,8 @@ const TotalGrowthBarChart = ({ isLoading }) => {
   );
 };
 
-TotalGrowthBarChart.propTypes = {
+TotalGrowthBarChartz.propTypes = {
   isLoading: PropTypes.bool
 };
 
-export default TotalGrowthBarChart;
+export default TotalGrowthBarChartz;

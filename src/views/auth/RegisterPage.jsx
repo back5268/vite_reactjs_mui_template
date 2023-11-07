@@ -5,10 +5,9 @@ import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, IconButton,
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import AnimateButton from '@components/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from '@utils/password-strength';
 import FormAuth from './form-auth';
-import { FormInput } from '@components/forms';
+import { FormInput, AnimateButton } from '@components';
 
 const RegisterPage = () => {
   const {

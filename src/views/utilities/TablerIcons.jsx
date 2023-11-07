@@ -2,8 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Card } from '@mui/material';
 
 // project imports
-import MainCard from '../../components/cards/MainCard';
-import SecondaryAction from '../../components/cards/CardSecondaryAction';
+import { CardSecondaryAction, MainCard } from '@components';
 
 // assets
 import LinkIcon from '@mui/icons-material/Link';
@@ -18,7 +17,7 @@ const IFrameWrapper = styled('iframe')(({ theme }) => ({
 // =============================|| TABLER ICONS ||============================= //
 
 const TablerIcons = () => (
-  <MainCard title="Tabler Icons" secondary={<SecondaryAction icon={<LinkIcon fontSize="small" />} link="https://tablericons.com/" />}>
+  <MainCard title="Tabler Icons" secondary={<CardSecondaryAction icon={<LinkIcon fontSize="small" />} link="https://tablericons.com/" />}>
     <Card sx={{ overflow: 'hidden' }}>
       <IFrameWrapper title="Tabler Icons" width="100%" src="https://tablericons.com/" />
     </Card>

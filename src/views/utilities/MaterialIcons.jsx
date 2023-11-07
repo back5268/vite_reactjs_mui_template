@@ -2,8 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Card } from '@mui/material';
 
 // project imports
-import MainCard from '../../components/cards/MainCard';
-import SecondaryAction from '../../components/cards/CardSecondaryAction';
+import { SecondaryAction, MainCard } from '@components';
 
 // styles
 const IFrameWrapper = styled('iframe')(({ theme }) => ({

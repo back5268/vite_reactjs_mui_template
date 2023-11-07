@@ -1,3 +1,3 @@
-export * from './regex'
-export * from './validate'
-export * from './main'
+export * from './regex';
+export * from './validate';
+export * from './main';

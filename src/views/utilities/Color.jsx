@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { Box, Card, Grid, Typography } from '@mui/material';
 
 // project imports
-import SubCard from '../../components/cards/SubCard';
-import MainCard from '../../components/cards/MainCard';
-import SecondaryAction from '../../components/cards/CardSecondaryAction';
-import { gridSpacing } from '../../constant/main';
+import { CardSecondaryAction, SubCard, MainCard } from '@components';
+import { gridSpacing } from '@constant';
 
 // ===============================|| COLOR BOX ||=============================== //
 
@@ -57,7 +55,7 @@ ColorBox.propTypes = {
 // ===============================|| UI COLOR ||=============================== //
 
 const UIColor = () => (
-  <MainCard title="Color Palette" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
+  <MainCard title="Color Palette" secondary={<CardSecondaryAction link="https://next.material-ui.com/system/palette/" />}>
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
         <SubCard title="Primary Color">

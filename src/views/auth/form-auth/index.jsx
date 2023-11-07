@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Button, Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // assets
 import Google from '@assets/images/icons/social-google.svg';
@@ -10,10 +10,8 @@ import Google from '@assets/images/icons/social-google.svg';
 // project imports
 import AuthWrapper from './AuthWrapper';
 import AuthCardWrapper from './AuthCardWrapper';
-import Logo from '@components/Logo';
-import { useConfigState } from '@store/configState';
-import AnimateButton from '@components/extended/AnimateButton';
-import AuthFooter from '@components/cards/AuthFooter';
+import { Logo, AnimateButton, AuthFooter } from '@components';
+import { useConfigState } from '@store';
 
 const FormAuth = (props) => {
   const { headerTitle, footerTitle, footerLink } = props;
@@ -21,9 +19,7 @@ const FormAuth = (props) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const { borderRadius } = useConfigState();
 
-  const googleHandler = async () => {
-    
-  };
+  const googleHandler = async () => {};
 
   return (
     <AuthWrapper>

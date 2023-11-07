@@ -8,10 +8,10 @@ import { Avatar, Box, ButtonBase } from '@mui/material';
 import { IconMenu2 } from '@tabler/icons';
 
 // project imports
-import LogoSection from '../logo';
-import SearchSection from './search';
-import ProfileSection from './profile';
-import NotificationSection from './notification';
+import LogoSection from '../logo-section';
+import SearchSection from './search-section';
+import ProfileSection from './profile-section';
+import NotificationSection from './notification-section';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 

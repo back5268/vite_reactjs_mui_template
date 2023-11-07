@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 // project imports
-import Loadable from '@components/loadable';
+import { Loadable } from '@components';
 
 const Login = Loadable(lazy(() => import('@views/auth/LoginPage')));
 const Register = Loadable(lazy(() => import('@views/auth/RegisterPage')));
@@ -20,6 +20,7 @@ const routes = [
   { path: '/auth/forgot-password', element: ForgotPassword, public: true },
 
   { path: '/', element: DashboardDefault, layout: true },
+  { path: '/dashboard', element: DashboardDefault, layout: true },
   { path: '/util-typography', element: UtilsTypography, layout: true },
   { path: '/util-color', element: UtilsColor, layout: true },
   { path: '/util-shadow', element: UtilsShadow, layout: true },
@@ -28,4 +29,4 @@ const routes = [
   { path: '/sample-page', element: SamplePage, layout: true }
 ];
 
-export default routes
+export default routes;

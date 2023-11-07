@@ -7,9 +7,8 @@ import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem
 
 // project imports
 import BajajAreaChartCard from './BajajAreaChartCard';
-import MainCard from '../../components/cards/MainCard';
-import SkeletonPopularCard from '../../components/cards/skeneton/PopularCard';
-import { gridSpacing } from '../../constant/main';
+import { PopularCard, MainCard } from '@components';
+import { gridSpacing } from '@constant';
 
 // assets
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
@@ -19,7 +18,7 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const PopularCard = ({ isLoading }) => {
+const PopularCardz = ({ isLoading }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,7 +34,7 @@ const PopularCard = ({ isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <SkeletonPopularCard />
+        <PopularCard />
       ) : (
         <MainCard content={false}>
           <CardContent>
@@ -302,8 +301,8 @@ const PopularCard = ({ isLoading }) => {
   );
 };
 
-PopularCard.propTypes = {
+PopularCardz.propTypes = {
   isLoading: PropTypes.bool
 };
 
-export default PopularCard;
+export default PopularCardz;

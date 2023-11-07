@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material';
 
-import AnimateButton from '@components/extended/AnimateButton';
 import FormAuth from './form-auth';
-import { FormInput } from '@components/forms';
+import { FormInput, AnimateButton } from '@components';
 
 const ForgotPassword = () => {
   const {

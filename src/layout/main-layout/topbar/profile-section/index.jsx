@@ -29,14 +29,14 @@ import {
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-// project imports
-import MainCard from '@components/cards/MainCard';
-import Transitions from '@components/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
-import User1 from '@assets/images/users/user-round.svg';
-
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+
+// project imports
+import { Transitions, MainCard } from '@components';
+import UpgradePlanCard from './UpgradePlanCard';
+import User1 from '@assets/images/users/user-round.svg';
+import { useLoadDataState, useUserState, useConfigState } from '@store';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -49,12 +49,17 @@ const ProfileSection = () => {
   const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+  const { borderRadius } = useConfigState();
+  const { clearUserInfo } = useUserState();
+  const { setLoadData } = useLoadDataState();
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
+    localStorage.removeItem('token');
+    clearUserInfo();
+    setLoadData(true);
   };
 
   const handleClose = (event) => {
@@ -281,11 +286,7 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton
-                          sx={{ borderRadius: `${borderRadius}px` }}
-                          selected={selectedIndex === 4}
-                          onClick={handleLogout}
-                        >
+                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} selected={selectedIndex === 4} onClick={handleLogout}>
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>

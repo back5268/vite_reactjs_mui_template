@@ -1,49 +1,43 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
-import { Box, Button, Checkbox, FormControlLabel, IconButton, InputAdornment, Stack, Typography } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, IconButton, InputAdornment, Stack, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 import FormAuth from './form-auth';
-import AnimateButton from '@components/extended/AnimateButton';
-import { FormInput } from '@components/forms';
-import { getData } from '@lib/request';
-import { getUserState } from '@store/userState';
+import { FormInput, AnimateButton } from '@components';
+import { loginApi } from '@api';
+import { useLoadDataState } from '@store';
 
 const LoginPage = () => {
   const {
-    register, reset,
+    register,
     handleSubmit,
     formState: { errors }
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
-  const { data } = useQuery('users', () => getData('/users'));
-  const { setUserInfo } = getUserState()
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const { setLoadData } = useLoadDataState();
 
-  const onSubmit = (form) => {
-    const user = data.find(d => d.email === form.email && d.website === form.password);
-    if (user) {
-      reset();
-      setUserInfo({ userInfo: user, token: user.username })
-      localStorage.setItem('token', user.username)
-      navigate('/')
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const response = await loginApi({ email: data.username, password: data.password });
+    if (response.data.status) {
+      setLoading(false);
+      const token = response.data.data.token;
+      localStorage.setItem('token', token);
+      setLoadData(true);
+    } else {
+      setLoading(false);
     }
   };
 
   return (
     <FormAuth headerTitle="Đăng nhập" footerTitle="Bạn chưa có tài khoản, đăng ký" footerLink="/auth/register">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          id="email"
-          type="email"
-          label="Email Address / Username"
-          register={register}
-          errors={errors}
-          required="email"
-        />
+        <FormInput id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
         <FormInput
           id="password"
           label="Password"
@@ -77,19 +71,19 @@ const LoginPage = () => {
             color="secondary"
             sx={{ textDecoration: 'none', cursor: 'pointer' }}
           >
-            Forgot Password?
+            Quên mật khẩu?
           </Typography>
         </Stack>
         <Box sx={{ mt: 2 }}>
           <AnimateButton>
-            <Button disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
+            <LoadingButton loading={loading} fullWidth type="submit" variant="contained" color="secondary">
               Sign in
-            </Button>
+            </LoadingButton>
           </AnimateButton>
         </Box>
       </form>
     </FormAuth>
   );
-}
+};
 
 export default LoginPage;

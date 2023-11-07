@@ -2,15 +2,13 @@ import { Grid, Link } from '@mui/material';
 import MuiTypography from '@mui/material/Typography';
 
 // project imports
-import SubCard from '../../components/cards/SubCard';
-import MainCard from '../../components/cards/MainCard';
-import SecondaryAction from '../../components/cards/CardSecondaryAction';
-import { gridSpacing } from '../../constant/main';
+import { CardSecondaryAction, MainCard, SubCard } from '@components';
+import { gridSpacing } from '@constant';
 
 // ==============================|| TYPOGRAPHY ||============================== //
 
 const Typography = () => (
-  <MainCard title="Basic Typography" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
+  <MainCard title="Basic Typography" secondary={<CardSecondaryAction link="https://next.material-ui.com/system/typography/" />}>
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12} sm={6}>
         <SubCard title="Heading">
