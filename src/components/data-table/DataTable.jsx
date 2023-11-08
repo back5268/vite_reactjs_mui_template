@@ -5,6 +5,7 @@ import {
   Checkbox,
   IconButton,
   Stack,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -59,6 +60,24 @@ const DataTable = (props) => {
         const response = await deleteAction(params);
         if (response.status) {
           setToast({ severity: 'success', message: 'Xóa dữ liệu thành công!' });
+          setParams((pre) => ({ ...pre, render: !pre.render }));
+          hideConfirm();
+        } else {
+          setToast({ severity: 'error', message: response.mess });
+          hideConfirm();
+        }
+      }
+    });
+  };
+
+  const onUpdateStatus = (func) => {
+    setConfirm({
+      title: 'Bạn có chắc chắn muốn cập nhật trạng thái!',
+      isOpen: true,
+      handleConfirm: async () => {
+        const response = await func();
+        if (response.status) {
+          setToast({ severity: 'success', message: 'Cập nhật trạng thái thành công!' });
           setParams((pre) => ({ ...pre, render: !pre.render }));
           hideConfirm();
         } else {
@@ -129,7 +148,19 @@ const DataTable = (props) => {
                 )}
                 <TableCell>{rowIndex + 1}</TableCell>
                 {columns.map((column, index) => (
-                  <TableCell key={index}>{column.body ? column.body(row) : row[column.field]}</TableCell>
+                  <TableCell key={index}>
+                    {column.updateStatus ? (
+                      <Switch
+                        checked={Boolean(row[column.field])}
+                        onChange={() => onUpdateStatus(() => column.updateStatus(row))}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      />
+                    ) : column.body ? (
+                      column.body(row)
+                    ) : (
+                      row[column.field]
+                    )}
+                  </TableCell>
                 ))}
                 {Boolean(actionInfo) && (
                   <TableCell>

@@ -1,20 +1,22 @@
 import { useGetApi } from '@/hooks';
-import { DataTable, Filters, FormInputFilter, FormSelectFilter, MainCard, StatusBody, TimeBody } from '@components';
+import { DataTable, Filters, FormInputFilter, FormSelectFilter, MainCard, TimeBody } from '@components';
 import { useState } from 'react';
 import Update from './Update';
-import { countUserApi, deleteUserApi, listUserApi } from '@api';
+import { countUserApi, deleteUserApi, listUserApi, updateUserApi } from '@api';
 import { status } from '@constant';
+import useGetParams from '@/hooks/useGetParams';
 
 const columns = [
   { field: 'phone', label: 'Phone' },
   { field: 'email', label: 'Email' },
   { label: 'Thời gian tạo', body: (e) => TimeBody(e.created_at)},
   { label: 'Thời gian cập nhật', body: (e) => TimeBody(e.updated_at)},
-  { label: 'Trạng thái', body: (e) => StatusBody(e.status)},
+  { label: 'Trạng thái', field: "status", updateStatus: (e) => updateUserApi({ status: e.status, id: e.id })},
 ];
 
 const SamplePage = () => {
-  const [params, setParams] = useState({ page: 1, limit: 10 });
+  const initParams = useGetParams()
+  const [params, setParams] = useState(initParams);
   const [filter, setFilter] = useState({ key_search: '', status: '' });
   const [visibled, setVisibled] = useState(false);
   const data = useGetApi(listUserApi, params, []);
