@@ -8,7 +8,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import FormAuth from './form-auth';
 import { FormInput, AnimateButton } from '@components';
 import { loginApi } from '@api';
-import { useLoadDataState } from '@store';
+import { useLoadDataState, useToastState } from '@store';
 
 const LoginPage = () => {
   const {
@@ -20,17 +20,19 @@ const LoginPage = () => {
   const [checked, setChecked] = useState(true);
   const [loading, setLoading] = useState(false);
   const { setLoadData } = useLoadDataState();
+  const { setToast } = useToastState();
 
   const onSubmit = async (data) => {
     setLoading(true);
     const response = await loginApi({ email: data.username, password: data.password });
-    console.log(response);
     if (response && response.status) {
       setLoading(false);
       const token = response.data.token;
       localStorage.setItem('token', token);
       setLoadData(true);
+      setToast({ severity: "success", message: "Đăng nhâp thành công!" })
     } else {
+      setToast({ severity: "error", message: "Tài khỏan hoặc mật khẩu không chính xác!" })
       setLoading(false);
     }
   };

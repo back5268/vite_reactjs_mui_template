@@ -14,10 +14,9 @@ export const removeUndefinedProps = (obj) => {
 export const refreshObject = (object) => {
     for (const key in object) {
         if (object.hasOwnProperty(key)) {
-            if (typeof object[key] === 'string') object[key] = ''
-            else if (Array.isArray(object[key])) object[key] = []
+            if (Array.isArray(object[key])) object[key] = []
             else if (typeof object[key] === 'object') object[key] = {}
-            else object[key] = undefined
+            else object[key] = ''
         }
     }
     return object

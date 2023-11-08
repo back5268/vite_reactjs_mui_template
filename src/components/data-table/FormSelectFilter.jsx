@@ -20,7 +20,7 @@ const FormSelectFilter = (props) => {
         <InputLabel htmlFor={id}>{label}</InputLabel>
         <Select input={<OutlinedInput id={id} label={label} />} MenuProps={MenuProps} defaultValue="" {...prop}>
           {options[0] ? options.map((o, index) => (
-            <MenuItem key={index} value={o[optionValue] || o.id || o} style={{ height: '40px' }}>
+            <MenuItem key={index} value={o[optionValue] || ((o.id || o.id === 0) ? o.id : o)} style={{ height: '40px' }}>
               {o[optionLabel] || o.name || o}
             </MenuItem>
           )) : <Typography variant='h6' mt={1} mb={1} ml={2}>Không tìm thấy dữ liệu</Typography>}

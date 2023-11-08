@@ -10,7 +10,7 @@ import themes from '@themes';
 // project imports
 import NavigationScroll from '@layout/NavigationScroll';
 import { useConfigState } from '@store';
-import Toast from '@layout/Toast';
+import { ConfirmDialog, Toast } from '@components';
 
 function App() {
   const { isOpen, defaultId, fontFamily, borderRadius, opened } = useConfigState();
@@ -19,7 +19,8 @@ function App() {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes({ isOpen, defaultId, fontFamily, borderRadius, opened })}>
         <CssBaseline />
-        {/* <Toast /> */}
+        <ConfirmDialog />
+        <Toast />
         <NavigationScroll>
           <Routes />
         </NavigationScroll>

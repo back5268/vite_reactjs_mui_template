@@ -1,34 +1,42 @@
-import FormUpdateDialog from '@/components/forms/FormUpdateDialog';
 import { useGetApi } from '@/hooks';
-import { countCompanyApi, listCompanyApi } from '@api';
-import { DataTable, Filters, FormInputFilter, FormSelectFilter, MainCard } from '@components';
+import { DataTable, Filters, FormInputFilter, FormSelectFilter, MainCard, StatusBody, TimeBody } from '@components';
 import { useState } from 'react';
 import Update from './Update';
+import { countUserApi, deleteUserApi, listUserApi } from '@api';
+import { status } from '@constant';
 
 const columns = [
-  { field: 'id', label: 'ID' },
-  { field: 'name', label: 'Name' },
-  { field: 'code', label: 'Code' }
+  { field: 'phone', label: 'Phone' },
+  { field: 'email', label: 'Email' },
+  { label: 'Thời gian tạo', body: (e) => TimeBody(e.created_at)},
+  { label: 'Thời gian cập nhật', body: (e) => TimeBody(e.updated_at)},
+  { label: 'Trạng thái', body: (e) => StatusBody(e.status)},
 ];
 
 const SamplePage = () => {
   const [params, setParams] = useState({ page: 1, limit: 10 });
-  const [filter, setFilter] = useState({ name: '' });
+  const [filter, setFilter] = useState({ key_search: '', status: '' });
   const [visibled, setVisibled] = useState(false);
-  const data = useGetApi(listCompanyApi, params, ['dsad']);
-  const count = useGetApi(countCompanyApi, params, 0);
+  const data = useGetApi(listUserApi, params, []);
+  const count = useGetApi(countUserApi, params, 0);
 
   return (
     <MainCard title="Sample Card">
       {visibled && <Update visibled={visibled} setVisibled={setVisibled} setParams={setParams} />}
-      <Filters setParams={setParams} filter={filter} setFilter={setFilter} lg={9}>
-        <FormInputFilter label="Tìm kiếm theo tên" value={filter.name} onChange={e => setFilter({ ...filter, name: e.target.value })} />
-        <FormSelectFilter label="Tìm kiếm theo tên" />
-        <FormSelectFilter label="Tìm kiếm theo tên" />
-        <FormSelectFilter label="Tìm kiếm theo tên" />
-        <FormSelectFilter label="Tìm kiếm theo tên" />
+      <Filters setParams={setParams} filter={filter} setFilter={setFilter} lg={6}>
+        <FormInputFilter label="Tìm kiếm theo email, số điện thoại" value={filter.key_search} onChange={(e) => setFilter({ ...filter, key_search: e.target.value })} />
+        <FormSelectFilter label="Trạng thái" options={status} value={filter.status} onChange={(e) => setFilter({ ...filter, status: e.target.value })} />
       </Filters>
-      <DataTable params={params} setParams={setParams} count={count} items={data} columns={columns} setVisibleDialog={setVisibled} headerInfo actionInfo={{ deleteAction: () => {} }} />
+      <DataTable
+        params={params}
+        setParams={setParams}
+        count={count}
+        items={data}
+        columns={columns}
+        setVisibleDialog={setVisibled}
+        headerInfo
+        actionInfo={{ deleteAction: deleteUserApi }}
+      />
     </MainCard>
   );
 };

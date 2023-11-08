@@ -14,7 +14,6 @@ const ForgotPassword = () => {
   } = useForm();
   const [checked, setChecked] = useState(true);
   const onSubmit = (data) => {
-    console.log(data);
   };
 
   return (

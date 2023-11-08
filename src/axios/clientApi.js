@@ -26,7 +26,6 @@ clientApi.interceptors.request.use(
 
 clientApi.interceptors.response.use(
   async function (res) {
-    console.log(res);
     if (res.data.mess === 'token-expired') {
       localStorage.removeItem('userInfo');
       localStorage.removeItem('token');

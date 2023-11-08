@@ -51,7 +51,7 @@ const FormUpdate = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>{props.children}</form>
       <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" mt={2}>
         <Button type="button" variant="outlined" onClick={setVisibleDialog ? () => setVisibleDialog(false) : () => navigate(route)}>
-          Trở lại
+          {setVisibleDialog ? "Hủy" : "Trở lại"}
         </Button>
         <LoadingButton type="submit" loading={loading} variant="contained" style={{ minWidth: '96px' }}>
           {checked ? 'Cập nhật' : 'Xác nhận'}

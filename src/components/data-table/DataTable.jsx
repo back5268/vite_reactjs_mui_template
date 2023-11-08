@@ -19,6 +19,7 @@ import { SubCard } from '../cards';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { useNavigate } from 'react-router-dom';
+import { useConfirmState, useToastState } from '@store';
 
 const DataTable = (props) => {
   const theme = useTheme();
@@ -38,6 +39,8 @@ const DataTable = (props) => {
     actionInfo
   } = props;
   const { deleteAction, handleDelete } = actionInfo || {};
+  const { setConfirm, hideConfirm } = useConfirmState();
+  const { setToast } = useToastState();
 
   const handleRowsPerPageChange = (event) => {
     setParams((pre) => ({ ...pre, limit: event.target.value }));
@@ -47,9 +50,24 @@ const DataTable = (props) => {
     setParams((pre) => ({ ...pre, page: value }));
   };
 
-  const onDelete = (e) => {
-    console.log(e);
-  }
+  const onDelete = (id) => {
+    setConfirm({
+      title: 'Bạn có chắc chắn muốn xóa dữ liệu này!',
+      isOpen: true,
+      handleConfirm: async () => {
+        const params = handleDelete ? handleDelete(id) : { id };
+        const response = await deleteAction(params);
+        if (response.status) {
+          setToast({ severity: 'success', message: 'Xóa dữ liệu thành công!' });
+          setParams((pre) => ({ ...pre, render: !pre.render }));
+          hideConfirm();
+        } else {
+          setToast({ severity: 'error', message: response.mess });
+          hideConfirm();
+        }
+      }
+    });
+  };
 
   useEffect(() => {
     setSelected?.([]);
@@ -111,7 +129,7 @@ const DataTable = (props) => {
                 )}
                 <TableCell>{rowIndex + 1}</TableCell>
                 {columns.map((column, index) => (
-                  <TableCell key={index}>{column.body?.(row) || row[column.field]}</TableCell>
+                  <TableCell key={index}>{column.body ? column.body(row) : row[column.field]}</TableCell>
                 ))}
                 {Boolean(actionInfo) && (
                   <TableCell>
