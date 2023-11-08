@@ -4,8 +4,8 @@ import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material'
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
-import Breadcrumbs from '@components/extended/Breadcrumbs';
-import { drawerWidth } from '@constant/main';
+import { Breadcrumbs } from '@components';
+import { drawerWidth } from '@constant';
 
 // project imports
 import Sidebar from './Sidebar';

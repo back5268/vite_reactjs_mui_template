@@ -24,9 +24,10 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     const response = await loginApi({ email: data.username, password: data.password });
-    if (response.data.status) {
+    console.log(response);
+    if (response && response.status) {
       setLoading(false);
-      const token = response.data.data.token;
+      const token = response.data.token;
       localStorage.setItem('token', token);
       setLoadData(true);
     } else {
@@ -76,7 +77,7 @@ const LoginPage = () => {
         </Stack>
         <Box sx={{ mt: 2 }}>
           <AnimateButton>
-            <LoadingButton loading={loading} fullWidth type="submit" variant="contained" color="secondary">
+            <LoadingButton loading={loading} fullWidth size="large" type="submit" variant="contained" color="secondary">
               Sign in
             </LoadingButton>
           </AnimateButton>

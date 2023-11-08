@@ -26,11 +26,12 @@ clientApi.interceptors.request.use(
 
 clientApi.interceptors.response.use(
   async function (res) {
+    console.log(res);
     if (res.data.mess === 'token-expired') {
       localStorage.removeItem('userInfo');
       localStorage.removeItem('token');
     }
-    return res;
+    if (res && res.data) return res.data
   },
   async function (error) {
     console.log(error);

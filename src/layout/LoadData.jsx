@@ -13,10 +13,10 @@ const LoadData = () => {
 
   async function fetchData() {
     const getAuth = await getAuthApi();
-    if (getAuth.data && getAuth.data.status) {
-      const userInfo = getAuth.data.data;
+    if (getAuth && getAuth.status) {
+      const userInfo = getAuth.data;
       setUserInfo({ userInfo });
-    }
+    } else localStorage.removeItem('token');
     setLoadData(false);
   }
 

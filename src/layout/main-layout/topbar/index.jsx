@@ -23,7 +23,7 @@ const TopBar = ({ handleLeftDrawerToggle }) => {
       {/* logo & toggler button */}
       <Box
         sx={{
-          width: 228,
+          width: 275,
           display: 'flex',
           [theme.breakpoints.down('md')]: {
             width: 'auto'
