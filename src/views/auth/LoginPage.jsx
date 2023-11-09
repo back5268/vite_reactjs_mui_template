@@ -30,9 +30,9 @@ const LoginPage = () => {
       const token = response.data.token;
       localStorage.setItem('token', token);
       setLoadData(true);
-      setToast({ severity: "success", message: "Đăng nhâp thành công!" })
+      setToast({ severity: 'success', message: 'Đăng nhâp thành công!' });
     } else {
-      setToast({ severity: "error", message: "Tài khỏan hoặc mật khẩu không chính xác!" })
+      setToast({ severity: 'error', message: 'Tài khỏan hoặc mật khẩu không chính xác!' });
       setLoading(false);
     }
   };
@@ -40,8 +40,9 @@ const LoginPage = () => {
   return (
     <FormAuth headerTitle="Đăng nhập" footerTitle="Bạn chưa có tài khoản, đăng ký" footerLink="/auth/register">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
+        <FormInput lg={12} id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
         <FormInput
+          lg={12}
           id="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}

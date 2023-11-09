@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Card } from '@mui/material';
 
 // project imports
-import { SecondaryAction, MainCard } from '@components';
+import { CardSecondaryAction, MainCard } from '@components';
 
 // styles
 const IFrameWrapper = styled('iframe')(({ theme }) => ({
@@ -14,7 +14,7 @@ const IFrameWrapper = styled('iframe')(({ theme }) => ({
 // ============================|| MATERIAL ICONS ||============================ //
 
 const MaterialIcons = () => (
-  <MainCard title="Material Icons" secondary={<SecondaryAction link="https://next.material-ui.com/components/material-icons/" />}>
+  <MainCard title="Material Icons" secondary={<CardSecondaryAction link="https://next.material-ui.com/components/material-icons/" />}>
     <Card sx={{ overflow: 'hidden' }}>
       <IFrameWrapper title="Material Icon" width="100%" src="https://material-ui.com/components/material-icons/" />
     </Card>

@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import { SubCard } from '../cards';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useConfirmState, useToastState } from '@store';
 
@@ -48,7 +49,7 @@ const DataTable = (props) => {
   };
 
   const handlePageChange = (event, value) => {
-    setParams((pre) => ({ ...pre, page: value }));
+    setParams((pre) => ({ ...pre, page: value + 1 }));
   };
 
   const onDelete = (id) => {
@@ -169,6 +170,13 @@ const DataTable = (props) => {
                         <DeleteOutlinedIcon />
                       </IconButton>
                     )}
+                    <IconButton
+                      onClick={setVisibleDialog ? () => setVisibleDialog(row[dataKey]) : () => onDelete(row[dataKey])}
+                      color="info"
+                      aria-label="detail"
+                    >
+                      <RemoveRedEyeOutlinedIcon />
+                    </IconButton>
                   </TableCell>
                 )}
               </TableRow>

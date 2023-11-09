@@ -13,13 +13,12 @@ const ForgotPassword = () => {
     formState: { errors }
   } = useForm();
   const [checked, setChecked] = useState(true);
-  const onSubmit = (data) => {
-  };
+  const onSubmit = (data) => {};
 
   return (
     <FormAuth headerTitle="Quên mật khẩu" footerTitle="Quay trở về đăng nhập" footerLink="/auth/login">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput id="email" label="Email Address / Username" register={register} errors={errors} required="email" />
+        <FormInput lg={12} id="email" label="Email Address / Username" register={register} errors={errors} required="email" />
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
             <FormControlLabel

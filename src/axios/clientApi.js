@@ -30,7 +30,7 @@ clientApi.interceptors.response.use(
       localStorage.removeItem('userInfo');
       localStorage.removeItem('token');
     }
-    if (res && res.data) return res.data
+    if (res && res.data) return res.data;
   },
   async function (error) {
     console.log(error);

@@ -4,7 +4,7 @@ import { FilterAlt } from '@mui/icons-material';
 import { removeUndefinedProps, refreshObject } from '@utils';
 
 const Filters = (props) => {
-  const { setParams, filter, setFilter, handleFilter, lg = 3, sm = 6, ...prop } = props;
+  const { setParams, filter, setFilter, handleFilter, sm = 12, lg = 3, ...prop } = props;
 
   const onClear = () => {
     setParams?.((pre) => {
@@ -43,7 +43,7 @@ const Filters = (props) => {
           <Grid container spacing={2} {...prop}>
             {props.children}
             <Grid item xs={12} sm={sm} lg={lg}>
-              <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" mt={1}>
+              <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" mt={2}>
                 <Button type="button" variant="outlined" onClick={onClear}>
                   Làm mới
                 </Button>

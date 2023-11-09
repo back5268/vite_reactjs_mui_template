@@ -28,15 +28,15 @@ const RegisterPage = () => {
     setLevel(strengthColor(temp));
   };
 
-  const onSubmit = (data) => {
-  };
+  const onSubmit = (data) => {};
 
   return (
     <FormAuth headerTitle="Đăng ký" footerTitle="Bạn đã có tài khoản, đăng nhập ngay" footerLink="/auth/login">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput id="full_name" label="Full name" register={register} errors={errors} required />
-        <FormInput id="email" label="Email Address / Username" register={register} errors={errors} required="email" />
+        <FormInput lg={12} id="full_name" label="Full name" register={register} errors={errors} required />
+        <FormInput lg={12} id="email" label="Email Address / Username" register={register} errors={errors} required="email" />
         <FormInput
+          lg={12}
           id="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}

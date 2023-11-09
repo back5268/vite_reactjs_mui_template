@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-import { Divider, Slide, Typography } from '@mui/material';
+import { Slide } from '@mui/material';
 import FormUpdate from './FormUpdate';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -8,7 +8,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const FormUpdateDialog = (props) => {
-  const { title, visibled, setVisibled = () => {} } = props;
+  const { visibled, setVisibled = () => {}, ...prop } = props;
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -21,21 +21,17 @@ const FormUpdateDialog = (props) => {
     <Dialog
       fullWidth
       maxWidth={'lg'}
-      open={visibled}
+      open={Boolean(visibled)}
       onClose={handleClose}
       TransitionComponent={Transition}
       keepMounted
       PaperProps={{
-        style: {
-          top: '-38%'
-        }
+        style: {}
       }}
     >
-      <Typography variant="h3" mt={1} mb={2}>
-        {title}
-      </Typography>
-      <Divider />
-      <FormUpdate setVisibleDialog={setVisibled}>{props.children}</FormUpdate>
+      <FormUpdate setVisibleDialog={setVisibled} {...prop}>
+        {props.children}
+      </FormUpdate>
     </Dialog>
   );
 };
