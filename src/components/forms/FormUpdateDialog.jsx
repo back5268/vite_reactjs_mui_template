@@ -11,7 +11,7 @@ const FormUpdateDialog = (props) => {
   const { visibled, setVisibled = () => {}, ...prop } = props;
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === 'backdropCClick') {
       return;
     }
     setVisibled(false);

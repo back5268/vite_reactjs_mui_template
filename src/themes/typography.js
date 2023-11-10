@@ -66,8 +66,8 @@ export default function themeTypography(theme) {
       textTransform: 'capitalize'
     },
     customInput: {
-      marginTop: 1,
-      marginBottom: 1
+      // marginTop: 1,
+      // marginBottom: 1
       // '& > label': {
       //   top: 23,
       //   left: 0,

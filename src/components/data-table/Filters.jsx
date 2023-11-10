@@ -43,7 +43,7 @@ const Filters = (props) => {
           <Grid container spacing={2} {...prop}>
             {props.children}
             <Grid item xs={12} sm={sm} lg={lg}>
-              <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" mt={2}>
+              <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" mt={1}>
                 <Button type="button" variant="outlined" onClick={onClear}>
                   Làm mới
                 </Button>

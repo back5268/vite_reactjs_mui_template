@@ -35,21 +35,21 @@ const FormUpdate = (props) => {
         const response = await actions.update(info);
         if (response) setLoading(false);
         if (response.status) {
-          setToast({ serevity: 'success', message: 'Cập nhật dữ liệu thành công!' });
+          setToast({ severity: 'success', message: 'Cập nhật dữ liệu thành công!' });
           handleSuccess(checked);
           if (setVisibleDialog) setVisibleDialog(false);
         } else {
-          setToast({ serevity: 'error', message: response.mess });
+          setToast({ severity: 'error', message: response.mess });
           handleFail(checked);
         }
       } else {
         const response = await actions.add(info);
         if (response) setLoading(false);
         if (response.status) {
-          setToast({ serevity: 'success', message: 'Thêm dữ liệu thành công!' });
+          setToast({ severity: 'success', message: 'Thêm dữ liệu thành công!' });
           handleSuccess(checked);
         } else {
-          setToast({ serevity: 'error', message: response.mess });
+          setToast({ severity: 'error', message: response.mess });
           handleFail(checked);
         }
       }

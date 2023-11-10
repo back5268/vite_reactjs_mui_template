@@ -1,8 +1,8 @@
 import { useGetApi } from '@/hooks';
 import { addUserApi, detailUserApi, updateUserApi } from '@api';
-import { FormInput, SubCard, FormUpdateDialog, FormCalendar } from '@components';
+import { FormInput, SubCard, FormUpdateDialog, FileUpload } from '@components';
 import { Grid } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { removeEqualPropObject } from '@utils';
 import FormSwitch from '@/components/forms/FormSwitch';
@@ -11,6 +11,7 @@ const initValue = ['email', 'phone'];
 const Update = (props) => {
   const { visibled, setVisibled, setParams } = props;
   const detail = useGetApi(detailUserApi, { id: visibled }, {});
+  const [files, setFiles] = useState([])
   const {
     register,
     handleSubmit,
@@ -36,7 +37,6 @@ const Update = (props) => {
     console.log(data);
     if (data.password && data.password !== data.confirm_password)
       setError('confirm_password', { type: 'required', message: 'Mật khẩu nhập lại không chính xác' });
-    if (!data.time) setValue('time', '');
     else if (typeof visibled === 'number') return { ...removeEqualPropObject(data, detail), id: visibled };
     else return data;
   };
@@ -76,9 +76,9 @@ const Update = (props) => {
             type="password"
             required={typeof visibled === 'number' ? false : 'password'}
           />
-          <FormCalendar label="time" id={'time'} value={watch('time')} setValue={setValue} />
           <FormSwitch checked={watch('status')} id="status" register={register} />
         </Grid>
+        <FileUpload files={files} setFiles={setFiles} />
       </SubCard>
     </FormUpdateDialog>
   );

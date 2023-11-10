@@ -26,7 +26,7 @@ const SamplePage = () => {
   return (
     <MainCard title="Danh sách người dùng">
       {visibled && <Update visibled={visibled} setVisibled={setVisibled} setParams={setParams} />}
-      <Filters setParams={setParams} filter={filter} setFilter={setFilter}>
+      <Filters setParams={setParams} filter={filter} setFilter={setFilter} sm={6}>
         <FormInput
           lg={3}
           sm={6}

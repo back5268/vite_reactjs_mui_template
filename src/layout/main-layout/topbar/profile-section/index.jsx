@@ -36,7 +36,7 @@ import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 import { Transitions, MainCard } from '@components';
 import UpgradePlanCard from './UpgradePlanCard';
 import User1 from '@assets/images/users/user-round.svg';
-import { useLoadDataState, useUserState, useConfigState } from '@store';
+import { useLoadDataState, useUserState, useConfigState, useToastState } from '@store';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -52,6 +52,7 @@ const ProfileSection = () => {
   const { borderRadius } = useConfigState();
   const { clearUserInfo } = useUserState();
   const { setLoadData } = useLoadDataState();
+  const { setToast } = useToastState();
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
@@ -59,6 +60,7 @@ const ProfileSection = () => {
   const handleLogout = async () => {
     localStorage.removeItem('token');
     clearUserInfo();
+    setToast({ severity: 'success', message: 'Đăng xuất thành công!' });
     setLoadData(true);
   };
 

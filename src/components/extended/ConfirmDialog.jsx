@@ -14,9 +14,9 @@ const ConfirmDialog = () => {
   return (
     isOpen && (
       <Dialog open={isOpen} onClose={hideConfirm}>
-        <DialogTitle>Sertech Service</DialogTitle>
+        <DialogTitle variant='h4'>Sertech Service</DialogTitle>
         <DialogContent>
-          <DialogContentText>{title || 'Bạn có chắc chắn muốn thực hiện hành động này?'}</DialogContentText>
+          <DialogContentText variant='h5'>{title || 'Bạn có chắc chắn muốn thực hiện hành động này?'}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={hideConfirm} color="primary">

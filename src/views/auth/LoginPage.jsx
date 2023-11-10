@@ -32,7 +32,7 @@ const LoginPage = () => {
       setLoadData(true);
       setToast({ severity: 'success', message: 'Đăng nhâp thành công!' });
     } else {
-      setToast({ severity: 'error', message: 'Tài khỏan hoặc mật khẩu không chính xác!' });
+      setToast({ severity: 'error', message: 'Tài khoản hoặc mật khẩu không chính xác!' });
       setLoading(false);
     }
   };
@@ -40,48 +40,50 @@ const LoginPage = () => {
   return (
     <FormAuth headerTitle="Đăng nhập" footerTitle="Bạn chưa có tài khoản, đăng ký" footerLink="/auth/register">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput lg={12} id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
-        <FormInput
-          lg={12}
-          id="password"
-          label="Password"
-          type={showPassword ? 'text' : 'password'}
-          register={register}
-          errors={errors}
-          required="password"
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => setShowPassword(!showPassword)}
-                onMouseDown={(e) => e.preventDefault()}
-                edge="end"
-                size="large"
-              >
-                {showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-          <FormControlLabel
-            control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} name="checked" color="primary" />}
-            label="Remember me"
+        <Stack spacing={2}>
+          <FormInput lg={12} id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
+          <FormInput
+            lg={12}
+            id="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            register={register}
+            errors={errors}
+            required="password"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setShowPassword(!showPassword)}
+                  onMouseDown={(e) => e.preventDefault()}
+                  edge="end"
+                  size="large"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
           />
-          <Typography
-            component={Link}
-            to={'/auth/forgot-password'}
-            variant="subtitle1"
-            color="secondary"
-            sx={{ textDecoration: 'none', cursor: 'pointer' }}
-          >
-            Quên mật khẩu?
-          </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+            <FormControlLabel
+              control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} name="checked" color="primary" />}
+              label="Remember me"
+            />
+            <Typography
+              component={Link}
+              to={'/auth/forgot-password'}
+              variant="subtitle1"
+              color="secondary"
+              sx={{ textDecoration: 'none', cursor: 'pointer' }}
+            >
+              Quên mật khẩu?
+            </Typography>
+          </Stack>
         </Stack>
         <Box sx={{ mt: 2 }}>
           <AnimateButton>
             <LoadingButton loading={loading} fullWidth size="large" type="submit" variant="contained" color="secondary">
-              Sign in
+              Đănh nhập
             </LoadingButton>
           </AnimateButton>
         </Box>
