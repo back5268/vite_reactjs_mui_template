@@ -26,7 +26,7 @@ const SamplePage = () => {
   return (
     <MainCard title="Danh sách người dùng">
       {visibled && <Update visibled={visibled} setVisibled={setVisibled} setParams={setParams} />}
-      <Filters setParams={setParams} filter={filter} setFilter={setFilter} sm={6}>
+      <Filters setParams={setParams} filter={filter} setFilter={setFilter} sm={12} lg={6}>
         <FormInput
           lg={3}
           sm={6}
@@ -43,7 +43,6 @@ const SamplePage = () => {
           value={filter.status}
           onChange={(e) => setFilter({ ...filter, status: e.target.value })}
         />
-        <FormCalendar lg={3} sm={6} label="time" id={'time'} />
       </Filters>
       <DataTable
         params={params}

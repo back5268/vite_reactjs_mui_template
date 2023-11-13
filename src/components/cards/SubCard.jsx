@@ -19,7 +19,7 @@ const SubCard = forwardRef(({ children, content, contentClass, darkTitle, second
         ':hover': {
           boxShadow: '0 2px 14px 0 rgb(32 40 45 / 8%)'
         },
-        overflow: 'scroll',
+        overflow: 'auto',
         ...sx
       }}
       {...others}

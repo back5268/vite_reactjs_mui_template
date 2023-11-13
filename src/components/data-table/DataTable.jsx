@@ -125,16 +125,16 @@ const DataTable = (props) => {
                   />
                 </TableCell>
               )}
-              <TableCell>STT</TableCell>
+              <TableCell sx={{ pt: 3, pb: 3 }}>STT</TableCell>
               {columns.map((column, index) => (
-                <TableCell key={index}>{column.label}</TableCell>
+                <TableCell key={index} align='center' sx={{ pt: 3, pb: 3 }} >{column.label}</TableCell>
               ))}
-              {Boolean(actionInfo) && <TableCell>Actions</TableCell>}
+              {Boolean(actionInfo) && <TableCell align='center' >Actions</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
             {items.map((row, rowIndex) => (
-              <TableRow key={rowIndex}>
+              <TableRow key={rowIndex} sx={{ backgroundColor: (rowIndex % 2) ? theme.palette.grey[50] : '' }}>
                 {Boolean(selected) && Boolean(setSelected) && (
                   <TableCell padding="checkbox">
                     <Checkbox
@@ -149,7 +149,7 @@ const DataTable = (props) => {
                 )}
                 <TableCell>{rowIndex + 1}</TableCell>
                 {columns.map((column, index) => (
-                  <TableCell key={index}>
+                  <TableCell key={index} align='center'>
                     {column.updateStatus ? (
                       <Switch
                         checked={Boolean(row[column.field])}
@@ -164,19 +164,21 @@ const DataTable = (props) => {
                   </TableCell>
                 ))}
                 {Boolean(actionInfo) && (
-                  <TableCell>
-                    {Boolean(deleteAction) && (
-                      <IconButton onClick={() => onDelete(row[dataKey])} color="error" aria-label="delete">
-                        <DeleteOutlinedIcon />
+                  <TableCell align='center'>
+                    <Box gap={1} justifyContent={"center"} display={"flex"}>
+                      {Boolean(deleteAction) && (
+                        <IconButton onClick={() => onDelete(row[dataKey])} color="error" aria-label="delete">
+                          <DeleteOutlinedIcon />
+                        </IconButton>
+                      )}
+                      <IconButton
+                        onClick={setVisibleDialog ? () => setVisibleDialog(row[dataKey]) : () => onDelete(row[dataKey])}
+                        color="info"
+                        aria-label="detail"
+                      >
+                        <RemoveRedEyeOutlinedIcon />
                       </IconButton>
-                    )}
-                    <IconButton
-                      onClick={setVisibleDialog ? () => setVisibleDialog(row[dataKey]) : () => onDelete(row[dataKey])}
-                      color="info"
-                      aria-label="detail"
-                    >
-                      <RemoveRedEyeOutlinedIcon />
-                    </IconButton>
+                    </Box>
                   </TableCell>
                 )}
               </TableRow>
