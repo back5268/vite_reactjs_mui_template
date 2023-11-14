@@ -9,11 +9,13 @@ import FormAuth from './form-auth';
 import { FormInput, AnimateButton } from '@components';
 import { loginApi } from '@api';
 import { useLoadDataState, useToastState } from '@store';
+import { validate } from '@lib';
 
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
@@ -23,8 +25,17 @@ const LoginPage = () => {
   const { setToast } = useToastState();
 
   const onSubmit = async (data) => {
+    const params = { password: data.password };
+    if (validate('email', data.username)) {
+      params.email = data.username;
+    } else if (validate('phone', data.username)) {
+      params.phone = data.username;
+    } else {
+      setError('username', { type: 'required', message: 'Tài khoản không đúng định dạng email hoặc số điện thoại!' });
+      return;
+    }
     setLoading(true);
-    const response = await loginApi({ email: data.username, password: data.password });
+    const response = await loginApi(params);
     if (response && response.status) {
       setLoading(false);
       const token = response.data.token;
@@ -41,7 +52,7 @@ const LoginPage = () => {
     <FormAuth headerTitle="Đăng nhập" footerTitle="Bạn chưa có tài khoản, đăng ký" footerLink="/auth/register">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
-          <FormInput lg={12} id="username" label="Email Address / Username" register={register} errors={errors} required="email" />
+          <FormInput lg={12} id="username" label="Email Address / Username" register={register} errors={errors} required />
           <FormInput
             lg={12}
             id="password"

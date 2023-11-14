@@ -6,3 +6,6 @@ export { default as Logo } from './Logo';
 export { default as Toastify } from './Toastify';
 export { default as ConfirmDialog } from './ConfirmDialog';
 export { default as FileUpload } from './FileUpload';
+export { default as KeyValues } from './KeyValues';
+export { default as TinyMceEditor } from './TinyMceEditor';
+export { default as Tag } from './Tag';

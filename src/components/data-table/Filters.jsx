@@ -10,7 +10,7 @@ const Filters = (props) => {
     setParams?.((pre) => {
       return {
         page: pre.page || 1,
-        limit: pre.limit || 20,
+        limit: pre.limit || 10,
         render: pre.render
       };
     });
@@ -42,7 +42,7 @@ const Filters = (props) => {
         <form onSubmit={onSubmit}>
           <Grid container spacing={2} {...prop}>
             {props.children}
-            <Grid item xs={12} sm={sm} lg={lg} alignSelf={"center"}>
+            <Grid item xs={12} sm={sm} lg={lg} alignSelf={'center'}>
               <Stack direction="row" spacing={2} justifyContent="flex-end">
                 <Button type="button" variant="outlined" onClick={onClear}>
                   Làm mới

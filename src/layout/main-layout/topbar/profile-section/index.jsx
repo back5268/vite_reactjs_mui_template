@@ -35,7 +35,7 @@ import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 // project imports
 import { Transitions, MainCard } from '@components';
 import UpgradePlanCard from './UpgradePlanCard';
-import User1 from '@assets/images/users/user-round.svg';
+import User1 from '@assets/images/users/profile.png';
 import { useLoadDataState, useUserState, useConfigState, useToastState } from '@store';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -43,6 +43,7 @@ import { useLoadDataState, useUserState, useConfigState, useToastState } from '@
 const ProfileSection = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { userInfo } = useUserState();
 
   const [sdm, setSdm] = useState(true);
   const [value, setValue] = useState('');
@@ -163,8 +164,8 @@ const ProfileSection = () => {
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Good Morning,</Typography>
-                        <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
+                        <Typography component="span" variant="h5" sx={{ fontWeight: 400 }}>
+                          {userInfo.email}
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">Project Admin</Typography>

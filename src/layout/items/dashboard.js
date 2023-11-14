@@ -1,8 +1,7 @@
-// assets
-import { IconDashboard } from '@tabler/icons';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 
 // constant
-const icons = { IconDashboard };
+const icons = { SpaceDashboardOutlinedIcon };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -16,7 +15,7 @@ const dashboard = {
       title: 'Dashboard',
       type: 'item',
       url: '/dashboard',
-      icon: icons.IconDashboard,
+      icon: icons.SpaceDashboardOutlinedIcon,
       breadcrumbs: false
     }
   ]

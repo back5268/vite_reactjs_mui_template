@@ -188,7 +188,7 @@ const Customization = () => {
                       marks
                       step={2}
                       min={4}
-                      max={24}
+                      max={12}
                       color="secondary"
                       sx={{
                         '& .MuiSlider-valueLabel': {
@@ -199,7 +199,7 @@ const Customization = () => {
                   </Grid>
                   <Grid item>
                     <Typography variant="h6" color="secondary">
-                      24px
+                      12px
                     </Typography>
                   </Grid>
                 </Grid>

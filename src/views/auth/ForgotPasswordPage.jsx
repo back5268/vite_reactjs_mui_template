@@ -18,8 +18,8 @@ const ForgotPassword = () => {
   return (
     <FormAuth headerTitle="Quên mật khẩu" footerTitle="Quay trở về đăng nhập" footerLink="/auth/login">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2} >
-          <FormInput lg={12} id="email" label="Email Address / Username" register={register} errors={errors} required="email" />
+        <Stack spacing={2}>
+          <FormInput lg={12} id="email" label="Email Address / Username" register={register} errors={errors} required />
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item>
               <FormControlLabel

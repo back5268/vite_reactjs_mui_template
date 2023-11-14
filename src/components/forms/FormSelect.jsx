@@ -42,12 +42,14 @@ const FormSelect = (props) => {
         >
           {options[0] ? (
             options.map((o, index) => (
-              <MenuItem key={index} value={o[optionValue] || o.id || o} style={{ height: '40px' }}>
+              <MenuItem key={index} value={o[optionValue] || (o.id === 0 ? 0 : o.id || o)} style={{ height: '40px' }}>
                 {o[optionLabel] || o.name || o}
               </MenuItem>
             ))
           ) : (
-            <Typography variant="h6">Không tìm thấy dữ liệu</Typography>
+            <MenuItem value="" style={{ height: '40px' }}>
+              Không tìm thấy dữ liệu
+            </MenuItem>
           )}
         </Select>
         {errors && errors[id] && <FormHelperText error>{errors[id].message}</FormHelperText>}

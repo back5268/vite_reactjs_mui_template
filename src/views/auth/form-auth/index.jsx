@@ -25,14 +25,12 @@ const FormAuth = (props) => {
     <AuthWrapper>
       <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
         <Grid item xs={12}>
-          <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
-            <Grid item sx={{ m: { xs: 1, sm: 2 }, mb: 0 }}>
+          <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '100vh' }}>
+            <Grid item sx={{ m: 2 }}>
               <AuthCardWrapper>
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                   <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
+                    <Logo />
                   </Grid>
                   <Grid item xs={12} sx={{ mb: 2 }}>
                     <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">

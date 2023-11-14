@@ -4,6 +4,7 @@ import { clientId } from './getClientId';
 
 export const clientApi = axios.create({
   baseURL: 'https://service.s-tech.info/',
+  // baseURL: 'http://localhost:5000/',
   timeout: 10000
 });
 
