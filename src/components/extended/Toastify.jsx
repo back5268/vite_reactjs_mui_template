@@ -7,21 +7,38 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Toastify = () => {
   const theme = useTheme();
-
-  // const customTheme = {
-  //   success: {
-  //     style: {
-  //       background: theme.palette.success.dark,
-  //       color: '#fff'
-  //     },
-  //     progressStyle: {
-  //       background: theme.palette.success.light
-  //     }
-  //   }
-  // };
-
   const { isOpen, toastInfo, duration, hideToast } = useToastState();
-  const notify = () => toast[toastInfo.severity](toastInfo.message);
+  let options = {};
+
+  switch (toastInfo.severity) {
+    case 'success':
+      options = {
+        style: {
+          background: theme.palette.success.dark,
+          color: '#fff'
+        },
+        progressStyle: {
+          background: theme.palette.success.light,
+        }
+      };
+      break;
+    case 'warning':
+      options = {
+        style: {
+          background: theme.palette.warning.dark,
+          color: '#fff'
+        },
+        progressStyle: {
+          background: theme.palette.warning.light,
+        }
+      };
+      break;
+    default:
+      break;
+  }
+
+  const notify = () =>
+    toast[toastInfo.severity](toastInfo.message, { ...options });
 
   useEffect(() => {
     if (isOpen && toastInfo.severity && toastInfo.message) {

@@ -29,17 +29,17 @@ const FormAuth = (props) => {
             <Grid item sx={{ m: 2 }}>
               <AuthCardWrapper>
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                  <Grid item sx={{ mb: 3 }}>
+                  <Grid item sx={{ mb: 3, mt: 3 }}>
                     <Logo />
                   </Grid>
                   <Grid item xs={12} sx={{ mb: 2 }}>
                     <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">
                       <Grid item>
                         <Stack alignItems="center" justifyContent="center" spacing={1}>
-                          <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
+                          <Typography color={theme.palette.secondary.main} gutterBottom variant='h2'>
                             {headerTitle}
                           </Typography>
-                          <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
+                          <Typography variant="caption" fontSize="14px" textAlign={matchDownSM ? 'center' : 'inherit'}>
                             Nhập thông tin xác thực của bạn để tiếp tục
                           </Typography>
                         </Stack>
