@@ -1,12 +1,12 @@
 import { useGetApi } from '@/hooks';
 import { addServiceUseApi, detailServiceUseApi, listCompanyApi, listProjectApi, updateServiceUseApi } from '@api';
-import { SubCard, FormUpdateDialog, FormSelect } from '@components';
+import { SubCard, FormUpdateDialog, FormSelect, FormInput } from '@components';
 import { Grid } from '@mui/material';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { removeEqualPropObject } from '@utils';
 
-const defaultValues = { company_id: '', project_id: '', service_detail_id: '', my_service_id: '' };
+const defaultValues = { company_id: '', project_id: '', service_detail_id: '', my_service_id: '', token: '' };
 const Update = (props) => {
   const { visibled, setVisibled, setParams, serviceDetails, myServices } = props;
   const {
@@ -50,7 +50,7 @@ const Update = (props) => {
       handleData={handleData}
       handleSuccess={() => {
         setParams((pre) => ({ ...pre, render: !pre.render }));
-        reset();
+        reset(defaultValues);
       }}
     >
       <SubCard>
@@ -98,6 +98,7 @@ const Update = (props) => {
             register={register}
             errors={errors}
           />
+          {typeof visibled == 'number' && <FormInput label="Token" value={watch("token")} errors={errors} lg={12} multiline rows={6} />}
         </Grid>
       </SubCard>
     </FormUpdateDialog>

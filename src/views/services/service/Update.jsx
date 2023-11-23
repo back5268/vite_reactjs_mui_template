@@ -55,7 +55,7 @@ const Update = (props) => {
       handleSuccess={() => {
         setParams((pre) => ({ ...pre, render: !pre.render }));
         setData([{ key: '', value: '' }]);
-        reset();
+        reset(defaultValues);
       }}
     >
       <SubCard>

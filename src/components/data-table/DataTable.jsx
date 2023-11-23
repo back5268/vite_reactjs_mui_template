@@ -94,7 +94,7 @@ const DataTable = (props) => {
     for (let key in params) {
       if (params.hasOwnProperty(key)) {
         const value = params[key];
-        if (value || value === 0) query[key] = Number(value) || value;
+        if (value || value === 0 && key !== "render") query[key] = Number(value) || value;
       }
     }
     setSelected?.([]);

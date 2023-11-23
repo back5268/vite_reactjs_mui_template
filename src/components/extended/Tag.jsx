@@ -5,7 +5,7 @@ const Tag = (props) => {
   const theme = useTheme();
 
   const chipSX = {
-    height: 24,
+    height: 32,
     padding: '0 6px'
   };
   const chipErrorSX = {

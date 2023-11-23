@@ -8,7 +8,7 @@ import { Breadcrumbs } from '@components';
 import { drawerWidth } from '@constant';
 
 // project imports
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar';
 import TopBar from './topbar';
 import navigation from '../items';
 import { useConfigState } from '@store';

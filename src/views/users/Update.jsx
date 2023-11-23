@@ -1,17 +1,16 @@
 import { useGetApi } from '@/hooks';
 import { addUserApi, detailUserApi, updateUserApi } from '@api';
-import { FormInput, SubCard, FormUpdateDialog, FileUpload } from '@components';
+import { FormInput, SubCard, FormUpdateDialog } from '@components';
 import { Grid } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { removeEqualPropObject } from '@utils';
 import FormSwitch from '@/components/forms/FormSwitch';
 
-const initValue = ['email', 'phone'];
+const defaultValues = { status: true, email: '', phone: '', password: '', confirm_password: '' };
 const Update = (props) => {
   const { visibled, setVisibled, setParams } = props;
   const detail = useGetApi(detailUserApi, { id: visibled }, {});
-  const [files, setFiles] = useState([]);
   const {
     register,
     handleSubmit,
@@ -21,15 +20,17 @@ const Update = (props) => {
     watch,
     formState: { errors }
   } = useForm({
-    defaultValues: { status: true, time: null }
+    defaultValues,
   });
 
   useEffect(() => {
     if (detail && typeof visibled === 'number') {
-      initValue.forEach((i) => {
-        setValue(i, detail[i] + '');
-      });
-      setValue('status', detail.status === 1);
+      for (const key in defaultValues) {
+        if (Object.hasOwnProperty.call(defaultValues, key)) {
+          if (key === 'status') setValue('status', detail.status === 1);
+          else if (!["password", "confirm_password"].includes(key)) setValue(key, detail[key] + '' || '');
+        }
+      }
     }
   }, [JSON.stringify(detail)]);
 
@@ -53,7 +54,7 @@ const Update = (props) => {
       handleData={handleData}
       handleSuccess={() => {
         setParams((pre) => ({ ...pre, render: !pre.render }));
-        reset();
+        reset(defaultValues);
       }}
     >
       <SubCard>

@@ -63,7 +63,7 @@ const Update = (props) => {
         setParams((pre) => ({ ...pre, render: !pre.render }));
         setFiles([]);
         setData(null);
-        reset();
+        reset(defaultValues);
       }}
     >
       <SubCard>
@@ -101,7 +101,7 @@ const Update = (props) => {
           <FileUpload title="Ảnh quảng cáo chân trang" files={files} setFiles={setFiles} />
           <FormSwitch checked={watch('status')} id="status" register={register} />
         </Grid>
-        <TinyMceEditor data={data} setData={setData} />
+        <TinyMceEditor value={data} setValue={setData} />
       </SubCard>
     </FormUpdateDialog>
   );

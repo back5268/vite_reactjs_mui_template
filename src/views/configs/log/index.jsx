@@ -17,8 +17,8 @@ const Template = () => {
     { field: 'subject', label: 'Tiêu đề' },
     { field: 'from', label: 'Địa chỉ gửi' },
     { field: 'to', label: 'Địa chỉ nhận' },
-    { field: 'company_name', label: 'Công ty' },
-    { field: 'project_name', label: 'Dự án' },
+    { label: 'Công ty', body: e => Body(companies, e.company_id) },
+    { label: 'Dự án', body: e => Body(projects, e.project_id) },
     { label: 'Loại dịch vụ', body: (e) => TypeServiceBody(e.type_service) },
     { label: 'Thời gian tạo', body: (e) => TimeBody(e.created_at) },
     { label: 'Trạng thái', body: (e) => Body(statusMail, e.status) }
