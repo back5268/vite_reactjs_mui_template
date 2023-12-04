@@ -1,0 +1,1 @@
+import{a6 as s,a7 as t}from"./index-21568be7.js";const r=e=>t("/web/user/getListUser",e),o=e=>t("/web/user/countUser",e),U=e=>t("/web/user/getDetailUser",e),i=e=>s("/web/user/deleteUser",e),p=e=>s("/web/user/addUser",e),u=e=>s("/web/user/updateUser",e);export{p as a,i as b,o as c,U as d,r as l,u};

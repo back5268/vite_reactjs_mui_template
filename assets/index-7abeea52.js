@@ -1,0 +1,1 @@
+import{a6 as o,a7 as p}from"./index-21568be7.js";const t=a=>p("web/company/getListCompany",a),e=a=>p("web/company/countCompany",a),m=a=>o("web/company/deleteCompany",a),y=a=>p("web/company/getDetailCompany",a),s=a=>o("/web/company/addCompany",a),c=a=>o("/web/company/updateCompany",a);export{s as a,m as b,e as c,y as d,t as l,c as u};

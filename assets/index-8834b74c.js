@@ -1,0 +1,1 @@
+import{a7 as e,a6 as o}from"./index-21568be7.js";const a=t=>e("web/project/getListProject",t),r=t=>e("web/project/countProject",t),j=t=>o("web/project/deleteProject",t),p=t=>e("web/project/getDetailProject",t),s=t=>o("/web/project/addProject",t),P=t=>o("/web/project/updateProject",t);export{s as a,j as b,r as c,p as d,a as l,P as u};
