@@ -14,7 +14,7 @@ const TinyMceEditor = (props) => {
   return (
     <Card variant="outlined" sx={{ mt: 1 }}>
       <Editor
-        // apiKey="y7gnmtbsaxnjbgh3405ioqbdm24eit5f0ovek49w8yvq5r9q"
+        apiKey="tt83g1s8ehmyleppcijwastmp8oriknphvwpd1n1066pjvd0"
         initialValue={initialValue}
         init={{
           branding: false,
